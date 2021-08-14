@@ -1,0 +1,95 @@
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "showInfo", function () {
+  return showInfo;
+});
+_parcelHelpers.export(exports, "handleMove", function () {
+  return handleMove;
+});
+var _testCurrentNumber = require("./testCurrentNumber");
+// const sidebarSecions = document.querySelectorAll(".sidebar__section");
+const inputFirstSection = document.querySelector(".second");
+const sidebar = document.querySelector(".sidebar");
+const enterForm = document.querySelector("#enterForm");
+console.log(_testCurrentNumber.totalParicipantes.setParticipantes(5));
+// Esta funcion sirve para que oculte el texto de información una vez que ya no esta en focus.
+const showInfo = e => {
+  // console.log(e.target.closest("input"));
+  const inputCatch = e.target.closest("input");
+  if (!inputCatch) return;
+  // Remove info in all inputs
+  const InputContainer = inputCatch.closest(".sidebar__section").querySelectorAll(".input__info");
+  const infoArray = [...InputContainer];
+  infoArray.forEach(info => info.classList.remove("show-info"));
+  console.log(infoArray);
+  // Add Info only the input selected now
+  const infoElmt = inputCatch.closest(".input__container").querySelector(".input__info");
+  infoElmt.classList.add("show-info");
+};
+const moveSections = val => {
+  const sidebarSecions = document.querySelectorAll(".sidebar__section");
+  sidebarSecions.forEach(section => {
+    section.style.transform = `translateX(${val * -100}% )`;
+  });
+};
+const waitTime = time => {
+  return new Promise(resolve => {
+    setTimeout(resolve, time * 1000);
+  });
+};
+const inputsCreate = (cantidad = 8) => {
+  // Regreso un string para colocar unir al String padre
+  return new Array(cantidad).fill("").map((_, pos) => `<div class="input__values">
+				<label for="" class="input__label">Equipo #${pos + 1}</label>
+				<input type="text" class="input__primary" />
+			</div>`).reduce((acc, val) => acc += val, "");
+};
+const sidebarSectionGeneral = (titulo = "Hola", sectionNumber) => {
+  const cantidad = Math.floor(Math.random() * 10);
+  return `<div class="sidebar__section user-input" style="transform: translateX(-${(sectionNumber - 1) * 100}%);">
+	<div class="sidebar__section-header">
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="24"
+			height="24"
+			viewBox="0 0 24 24"
+			class="back__icon"
+			data-back="${sectionNumber}"
+		>
+			<path
+				d="M13.427 3.021h-7.427v-3.021l-6 5.39 6 5.61v-3h7.427c3.071 0 5.561 2.356 5.561 5.427 0 3.071-2.489 5.573-5.561 5.573h-7.427v5h7.427c5.84 0 10.573-4.734 10.573-10.573s-4.733-10.406-10.573-10.406z"
+			/>
+		</svg>
+		<h2 class="header__title">Coloque el nombre de los ${titulo}</h2>
+	</div>
+	<div class="inputs__container">${inputsCreate(cantidad)}</div>
+	<button class="btn btn-primary" data-next="${sectionNumber + 1}">Siguiente</button>
+</div>
+	
+	`;
+};
+const checkValues = values => {
+  console.log(values);
+};
+const renderInputs = async (e, btnPushed) => {
+  const currentSection = +btnPushed.dataset.next;
+  const inputs = e.target.closest(".sidebar__section").querySelectorAll("input");
+  e.preventDefault();
+  // Revisar que los imputs esten completos
+  checkValues([...e.target.closest(".sidebar__section").querySelectorAll("input")]);
+};
+const dismoutSection = async (e, btnPushed) => {
+  moveSections(+btnPushed.dataset.back - 1);
+  if (btnPushed.dataset.back < 2) return;
+  await waitTime(0.5);
+  e.target.closest(".sidebar__section").remove();
+};
+const handleMove = e => {
+  const btnPushed = e.target.closest(".btn-primary") || e.target.closest(".back__icon");
+  if (!btnPushed) return;
+  btnPushed.dataset?.back && dismoutSection(e, btnPushed);
+  btnPushed.dataset?.next && renderInputs(e, btnPushed);
+};
+inputFirstSection.addEventListener("click", showInfo);
+sidebar.addEventListener("click", handleMove);
+enterForm.addEventListener("submit", checkValues);

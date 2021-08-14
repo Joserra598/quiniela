@@ -1,0 +1,27 @@
+var _ShowInfo = require("./ShowInfo");
+const inputFirstSection = document.querySelector(".second");
+const sidebar = document.querySelector(".sidebar");
+const newRegister = document.querySelector("#new-register");
+const sidebarSecions = document.querySelectorAll(".sidebar__section");
+const nextButtons = [...document.querySelectorAll(".btn-primary")].filter(val => val.dataset.next);
+console.log(nextButtons);
+const moveSections = val => {
+  sidebarSecions.forEach(section => {
+    section.style.transform = `translateX(${val * -100}% )`;
+  });
+};
+inputFirstSection.addEventListener("click", _ShowInfo.showInfo);
+sidebar.addEventListener("click", e => {
+  // const btnNext = e.target.closest(".btn-primary");
+  // const btnBack = e.target.closest(".back__icon");
+  const btnPushed = e.target.closest(".btn-primary") || e.target.closest(".back__icon");
+  if (!btnPushed) return;
+  console.log(btnPushed.dataset?.back);
+  console.log(btnPushed.dataset?.next);
+  btnPushed.dataset?.back && moveSections(+btnPushed.dataset.back * -1 - 1);
+  btnPushed.dataset?.next && moveSections(+btnPushed.dataset.next);
+});
+newRegister.addEventListener("click", () => {});
+if (module.hot) {
+  module.hot.accept();
+}

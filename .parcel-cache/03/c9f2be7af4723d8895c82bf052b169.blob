@@ -1,0 +1,77 @@
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "renderCl", function () {
+  return renderCl;
+});
+const inputFirstSection = document.querySelector(".second");
+const sidebar = document.querySelector(".sidebar");
+class sectionCl {
+  constructor() {
+    sidebar.addEventListener("click", this.handleMove.bind(this));
+  }
+  handleMove(e) {
+    const btnPushed = e.target.closest(".btn-primary") || e.target.closest(".back__icon");
+    if (!btnPushed) return;
+    // btnPushed.dataset?.back && dismoutSection(e, btnPushed);
+    // btnPushed.dataset?.next && renderInputs(e, btnPushed);
+    btnPushed.dataset?.back && console.log("Intentare volver");
+    btnPushed.dataset?.next && this.renderInputs(e, btnPushed);
+  }
+  moveSections(val) {
+    const sidebarSecions = document.querySelectorAll(".sidebar__section");
+    sidebarSecions.forEach(section => {
+      section.style.transform = `translateX(${val * -100}% )`;
+    });
+  }
+  waitTime(time) {
+    return new Promise(resolve => {
+      setTimeout(resolve, time * 1000);
+    });
+  }
+  showErrorValue(inputs) {
+    inputs.forEach(input => {
+      if (!Boolean(input.value)) {
+        input.classList.add("error-move");
+        setTimeout(() => input.classList.remove("error-move"), 400);
+      }
+    });
+  }
+  showInfo(e) {
+    // console.log(e.target.closest("input"));
+    const inputCatch = e.target.closest("input");
+    if (!inputCatch) return;
+    // Remove info in all inputs
+    const InputContainer = inputCatch.closest(".sidebar__section").querySelectorAll(".input__info");
+    const infoArray = [...InputContainer];
+    infoArray.forEach(info => info.classList.remove("show-info"));
+    // Add Info only the input selected now
+    const infoElmt = inputCatch.closest(".input__container").querySelector(".input__info");
+    infoElmt.classList.add("show-info");
+  }
+  checkValues(values) {
+    return values.some(value => Boolean(value.value) === false);
+  }
+}
+class renderCl extends sectionCl {
+  constructor() {
+    super();
+  }
+  async renderInputs(e, btnPushed) {
+    const currentSection = +btnPushed.dataset.next;
+    const inputs = [...e.target.closest(".sidebar__section").querySelectorAll("input")];
+    e.preventDefault();
+    this.checkValues(inputs) && this.showErrorValue(inputs);
+    if (this.checkValues(inputs)) return;
+    if (currentSection > 3) return;
+    e.target.classList.add("btn__spinner");
+    if (currentSection >= 2) {
+      // Se deben guardar los datos antes de avanzar.
+      inputsValues.push(storedValues(inputs));
+      sidebar.insertAdjacentHTML("beforeend", sidebarSectionGeneral(getTitulo(currentSection), currentSection));
+    }
+    await waitTime(1);
+    moveSections(currentSection);
+    await waitTime(0.3);
+    e.target.classList.remove("btn__spinner");
+  }
+}

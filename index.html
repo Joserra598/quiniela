@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Quiniela</title>
+		<link rel="stylesheet" href="style.css" />
+		<script type="module" defer src="./index.js"></script>
+	</head>
+	<body>
+		<main class="main">
+			<sidebar class="sidebar">
+				<div class="sidebar__section entry">
+					<div class="container-index new">
+						<h2 class="container-index__title">Crear nueva quiniela</h2>
+						<button id="new-register" class="btn btn-primary" data-next="1">Empezar</button>
+					</div>
+					<div class="container-index existing">
+						<h2 class="container-index__title">Cargar Registros</h2>
+						<button class="btn btn-primary">Cargar</button>
+					</div>
+				</div>
+				<form class="sidebar__section second" id="enterForm">
+					<div class="sidebar__section-header">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							class="back__icon"
+							data-back="1"
+						>
+							<path
+								d="M13.427 3.021h-7.427v-3.021l-6 5.39 6 5.61v-3h7.427c3.071 0 5.561 2.356 5.561 5.427 0 3.071-2.489 5.573-5.561 5.573h-7.427v5h7.427c5.84 0 10.573-4.734 10.573-10.573s-4.733-10.406-10.573-10.406z"
+							/>
+						</svg>
+						<h2 class="header__title">Datos iniciales</h2>
+					</div>
+					<div class="input__container">
+						<div class="input__values">
+							<label for="" class="input__label">Nombre:</label>
+							<input id="nameInput" type="text" class="input__primary" />
+						</div>
+						<p class="input__info">
+							Se requiere de un nombre, para identificar como se llamara esta quiniela.
+						</p>
+					</div>
+
+					<div class="input__container">
+						<div class="input__values">
+							<label for="" class="input__label"> Numero Participantes:</label>
+							<input type="number" class="input__primary input-number" min="1" max="20" />
+						</div>
+						<p class="input__info">
+							Es necesario colocar el numero de participantes, para poder empajerarlos de forma
+							correcta.
+						</p>
+					</div>
+
+					<button type="submit" class="btn btn-primary" data-next="2">Siguiente</button>
+					<!-- <div class="spinner"></div> -->
+				</form>
+
+				<div class="sidebar__section user-input">
+					<div class="sidebar__section-header">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							class="back__icon"
+							data-back="2"
+						>
+							<path
+								d="M13.427 3.021h-7.427v-3.021l-6 5.39 6 5.61v-3h7.427c3.071 0 5.561 2.356 5.561 5.427 0 3.071-2.489 5.573-5.561 5.573h-7.427v5h7.427c5.84 0 10.573-4.734 10.573-10.573s-4.733-10.406-10.573-10.406z"
+							/>
+						</svg>
+						<h2 class="header__title">Coloque el nombre de los equipos</h2>
+					</div>
+					<!-- <div class="inputs__container">
+						<div class="input__values">
+							<label for="" class="input__label">Equipo #1</label>
+							<input type="text" class="input__primary" />
+						</div>
+						<div class="input__values">
+							<label for="" class="input__label">Equipo #2</label>
+							<input type="text" class="input__primary" />
+						</div>
+						<div class="input__values">
+							<label for="" class="input__label">Equipo #3</label>
+							<input type="text" class="input__primary" />
+						</div>
+						<div class="input__values">
+							<label for="" class="input__label">Equipo #4</label>
+							<input type="text" class="input__primary" />
+						</div>
+						<div class="input__values">
+							<label for="" class="input__label">Equipo #5</label>
+							<input type="text" class="input__primary" />
+						</div>
+					</div> -->
+					<div class="teams__container">
+						<div class="team__cotainer">
+							<img src="./img/2287.png" alt="Team-name" />
+							<h3 class="team__name">America</h3>
+						</div>
+						<div class="team__cotainer">
+							<img src="./img/2288.png" alt="Team-name" />
+							<h3 class="team__name">Necaxa</h3>
+						</div>
+						<div class="team__cotainer">
+							<img src="./img/2289.png" alt="Team-name" />
+							<h3 class="team__name">León</h3>
+						</div>
+						<div class="team__cotainer">
+							<img src="./img/2295.png" alt="Team-name" />
+							<h3 class="team__name">Cruz Azul</h3>
+						</div>
+					</div>
+
+					<button class="btn btn-primary" data-next="3">Siguiente</button>
+				</div>
+				<!-- <div class="sidebar__section user-input">
+					<div class="sidebar__section-header">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							class="back__icon"
+							data-back="3"
+						>
+							<path
+								d="M13.427 3.021h-7.427v-3.021l-6 5.39 6 5.61v-3h7.427c3.071 0 5.561 2.356 5.561 5.427 0 3.071-2.489 5.573-5.561 5.573h-7.427v5h7.427c5.84 0 10.573-4.734 10.573-10.573s-4.733-10.406-10.573-10.406z"
+							/>
+						</svg>
+						<h2 class="header__title">Coloque el nombre de los equipos</h2>
+					</div>
+					<div class="inputs__container">
+						<div class="input__values">
+							<label for="" class="input__label">Participante #1</label>
+							<input type="text" class="input__primary" />
+						</div>
+						<div class="input__values">
+							<label for="" class="input__label">Participante #2</label>
+							<input type="text" class="input__primary" />
+						</div>
+						<div class="input__values">
+							<label for="" class="input__label">Participante #3</label>
+							<input type="text" class="input__primary" />
+						</div>
+						<div class="input__values">
+							<label for="" class="input__label">Participante #4</label>
+							<input type="text" class="input__primary" />
+						</div>
+						<div class="input__values">
+							<label for="" class="input__label">Participante #5</label>
+							<input type="text" class="input__primary" />
+						</div>
+					</div>
+					<button class="btn btn-primary" data-next="3">Mostrar</button>
+				</div> -->
+			</sidebar>
+			<section class="view view-section">
+				<section class="view_section">
+					<header class="view__header">
+						<h2>Equipos</h2>
+					</header>
+					<div class="view__container"></div>
+				</section>
+				<section class="view_section">
+					<header class="view__header">
+						<h2>Participantes</h2>
+					</header>
+					<div class="view__container">
+						<!-- <div class="tag-value">Jose</div>
+						<div class="tag-value">Miguel</div>
+						<div class="tag-value">Armando</div>
+						<div class="tag-value">Norma</div> -->
+					</div>
+				</section>
+				<button class="btn-secundary btn-left" id="editBtn">
+					<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+						<path
+							d="M9 19h-4v-2h4v2zm2.946-4.036l3.107 3.105-4.112.931 1.005-4.036zm12.054-5.839l-7.898 7.996-3.202-3.202 7.898-7.995 3.202 3.201zm-6 8.92v3.955h-16v-20h7.362c4.156 0 2.638 6 2.638 6s2.313-.635 4.067-.133l1.952-1.976c-2.214-2.807-5.762-5.891-7.83-5.891h-10.189v24h20v-7.98l-2 2.025z"
+						/>
+					</svg>
+				</button>
+				<button class="btn-secundary btn-right" id="mixBtn">🎲</button>
+			</section>
+			<section class="result view-section">
+				<header class="view__header">
+					<h2>Resultado</h2>
+				</header>
+
+				<section class="result__container">
+					<div class="result__values">
+						<div class="card__container loading">
+							<div class="card__img">
+								<img src="./img/2289.png" alt="" />
+							</div>
+							<div class="card__info">
+								<h2>Club León</h2>
+								<p>Estadio: Nou Camp</p>
+								<p>Locacion: León, Guanajuato</p>
+								<h3 class="card__info__result">Asignado a: José Luis</h3>
+							</div>
+							<div class="spinner center-in-card"></div>
+						</div>
+						<div class="card__container">
+							<div class="card__img">
+								<img src="./img/2289.png" alt="" />
+							</div>
+							<div class="card__info">
+								<h2>Club León</h2>
+								<p>Estadio: Nou Camp</p>
+								<p>Locacion: León, Guanajuato</p>
+								<h3 class="card__info__result">Asignado a: José Luis</h3>
+							</div>
+						</div>
+						<div class="card__container">
+							<div class="card__img">
+								<img src="./img/2288.png" alt="" />
+							</div>
+							<div class="card__info">
+								<h2>Club León</h2>
+								<p>Estadio: Nou Camp</p>
+								<p>Cuidad: León, Guanajuato</p>
+								<h3 class="card__info__result">Asignado a: José Luis</h3>
+							</div>
+						</div>
+					</div>
+					<div class="result__buttons"></div>
+				</section>
+			</section>
+			<div class="overlay hidden"></div>
+		</main>
+	</body>
+</html>

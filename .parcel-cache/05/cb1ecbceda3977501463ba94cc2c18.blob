@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Quiniela</title>
+		<link rel="stylesheet" href="381af7e926dee1ccea208748d9a01fe7">
+		<script src="4446f5e227c2c938d062e7ce10c1adbe"></script>
+	</head>
+	<body>
+		<main class="main">
+			<sidebar class="sidebar">
+				<div class="sidebar__section entry">
+					<div class="container-index new">
+						<h2 class="container-index__title">Crear nueva quiniela</h2>
+						<button class="btn btn-primary">Empezar</button>
+					</div>
+					<div class="container-index existing">
+						<h2 class="container-index__title">Cargar Registros</h2>
+						<button class="btn btn-primary">Cargar</button>
+					</div>
+				</div>
+				<div class="sidebar__section second">
+					<div class="input__container">
+						<div class="input__values">
+							<label for="" class="input__label">Nombre:</label>
+							<input type="text" class="input__primary">
+						</div>
+						<p class="input__info">
+							Se requiere de un nombre, para identificar como se llamara esta quiniela.
+						</p>
+					</div>
+
+					<div class="input__container">
+						<div class="input__values">
+							<label for="" class="input__label"> Numero Participantes:</label>
+							<input type="number" class="input__primary input-number">
+						</div>
+						<p class="input__info">
+							Es necesario colocar el numero de participantes, para poder empajerarlos de forma
+							correcta.
+						</p>
+					</div>
+
+					<button class="btn btn-primary">Siguiente</button>
+				</div>
+			</sidebar>
+			<section class="view"></section>
+		</main>
+	</body>
+</html>

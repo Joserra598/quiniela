@@ -1,0 +1,54 @@
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "showInfo", function () {
+  return showInfo;
+});
+_parcelHelpers.export(exports, "handleMove", function () {
+  return handleMove;
+});
+const sidebarSecions = document.querySelectorAll(".sidebar__section");
+const inputFirstSection = document.querySelector(".second");
+const sidebar = document.querySelector(".sidebar");
+// Esta funcion sirve para que oculte el texto de información una vez que ya no esta en focus.
+const showInfo = e => {
+  // console.log(e.target.closest("input"));
+  const inputCatch = e.target.closest("input");
+  if (!inputCatch) return;
+  // Remove info in all inputs
+  const InputContainer = inputCatch.closest(".sidebar__section").querySelectorAll(".input__info");
+  const infoArray = [...InputContainer];
+  infoArray.forEach(info => info.classList.remove("show-info"));
+  console.log(infoArray);
+  // Add Info only the input selected now
+  const infoElmt = inputCatch.closest(".input__container").querySelector(".input__info");
+  infoElmt.classList.add("show-info");
+};
+const moveSections = val => {
+  sidebarSecions.forEach(section => {
+    section.style.transform = `translateX(${val * -100}% )`;
+  });
+};
+const waitTime = time => {
+  return new Promise(resolve => {
+    setTimeout(resolve, time * 1000);
+  });
+};
+const renderInputs = async e => {
+  const section = e.target.closest(".sidebar__section");
+  e.target.classList.add("btn-hidden");
+  await waitTime(1);
+  e.target.remove();
+  section.insertAdjacentHTML("beforeend", `<div class="spinner"></div>`);
+  console.log(e.target);
+};
+const handleMove = e => {
+  const btnPushed = e.target.closest(".btn-primary") || e.target.closest(".back__icon");
+  if (!btnPushed) return;
+  console.log(btnPushed.dataset?.back);
+  console.log(btnPushed.dataset?.next);
+  btnPushed.dataset?.back && moveSections(+btnPushed.dataset.back - 1);
+  // btnPushed.dataset?.next && moveSections(+btnPushed.dataset.next);
+  btnPushed.dataset?.next && renderInputs(e);
+};
+inputFirstSection.addEventListener("click", showInfo);
+sidebar.addEventListener("click", handleMove);

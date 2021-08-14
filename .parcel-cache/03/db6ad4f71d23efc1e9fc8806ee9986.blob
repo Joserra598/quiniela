@@ -1,0 +1,43 @@
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.main {
+	min-height: 100vh;
+	width: 100%;
+	background: white;
+	display: flex;
+}
+
+.sidebar {
+	width: 25vw;
+	min-height: 100vh;
+	background: white;
+	/* outline: 5px solid red; */
+	display: flex;
+	flex-direction: column;
+}
+
+.container-index {
+	flex-basis: 100%;
+	/* background: pink; */
+}
+
+.new {
+	background: white;
+}
+
+.existing {
+	background: black;
+}
+
+.view {
+	width: 75vw;
+	min-height: 100vh;
+	background: rgba(0, 0, 0, 0.2);
+	backdrop-filter: blur(5px);
+}

@@ -1,0 +1,63 @@
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "showInfo", function () {
+  return showInfo;
+});
+_parcelHelpers.export(exports, "handleMove", function () {
+  return handleMove;
+});
+var _testCurrentNumber = require("./testCurrentNumber");
+const sidebarSecions = document.querySelectorAll(".sidebar__section");
+const inputFirstSection = document.querySelector(".second");
+const sidebar = document.querySelector(".sidebar");
+console.log(_testCurrentNumber.totalParicipantes.setParticipantes(5));
+// Esta funcion sirve para que oculte el texto de información una vez que ya no esta en focus.
+const showInfo = e => {
+  // console.log(e.target.closest("input"));
+  const inputCatch = e.target.closest("input");
+  if (!inputCatch) return;
+  // Remove info in all inputs
+  const InputContainer = inputCatch.closest(".sidebar__section").querySelectorAll(".input__info");
+  const infoArray = [...InputContainer];
+  infoArray.forEach(info => info.classList.remove("show-info"));
+  console.log(infoArray);
+  // Add Info only the input selected now
+  const infoElmt = inputCatch.closest(".input__container").querySelector(".input__info");
+  infoElmt.classList.add("show-info");
+};
+const moveSections = val => {
+  sidebarSecions.forEach(section => {
+    section.style.transform = `translateX(${val * -100}% )`;
+  });
+};
+const waitTime = time => {
+  return new Promise(resolve => {
+    setTimeout(resolve, time * 1000);
+  });
+};
+const inputsCreate = (cantidad = 1) => {
+  const molde = new Array(0, cantidad);
+  const test = molde.map(val => val);
+  console.log(test);
+};
+const renderInputs = async (e, btnPushed) => {
+  // Revisar que los imputs esten completos
+  // En caso de que no haya values en todos, se muestra un error.
+  // Si estan todos llenos los values se crear se renderizan y acto seguido se pasa a la siguinete seccion.
+  e.target.classList.add("btn__spinner");
+  inputsCreate(3);
+  await waitTime(1);
+  moveSections(+btnPushed.dataset.next);
+  await waitTime(0.3);
+  e.target.classList.remove("btn__spinner");
+};
+const handleMove = e => {
+  const btnPushed = e.target.closest(".btn-primary") || e.target.closest(".back__icon");
+  if (!btnPushed) return;
+  console.log(btnPushed.dataset?.back);
+  console.log(btnPushed.dataset?.next);
+  btnPushed.dataset?.back && moveSections(+btnPushed.dataset.back - 1);
+  btnPushed.dataset?.next && renderInputs(e, btnPushed);
+};
+inputFirstSection.addEventListener("click", showInfo);
+sidebar.addEventListener("click", handleMove);

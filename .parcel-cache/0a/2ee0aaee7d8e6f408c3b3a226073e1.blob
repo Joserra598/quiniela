@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Quiniela</title>
+		<link rel="stylesheet" href="/index.HASH_REF_8a6e625a6f078c797be837fbf556d9ac.css">
+		<script defer="" src="/index.HASH_REF_62d5dab885897b04655082d4fd532818.js"></script>
+	</head>
+	<body>
+		<main class="main">
+			<sidebar class="sidebar">
+				<div class="sidebar__section entry">
+					<div class="container-index new">
+						<h2 class="container-index__title">Crear nueva quiniela</h2>
+						<button id="new-register" class="btn btn-primary">Empezar</button>
+					</div>
+					<div class="container-index existing">
+						<h2 class="container-index__title">Cargar Registros</h2>
+						<button class="btn btn-primary">Cargar</button>
+					</div>
+				</div>
+				<div class="sidebar__section second">
+					<div class="input__container">
+						<div class="input__values">
+							<label for="" class="input__label">Nombre:</label>
+							<input type="text" class="input__primary">
+						</div>
+						<p class="input__info">
+							Se requiere de un nombre, para identificar como se llamara esta quiniela.
+						</p>
+					</div>
+
+					<div class="input__container">
+						<div class="input__values">
+							<label for="" class="input__label"> Numero Participantes:</label>
+							<input type="number" class="input__primary input-number" min="1" max="20">
+						</div>
+						<p class="input__info">
+							Es necesario colocar el numero de participantes, para poder empajerarlos de forma
+							correcta.
+						</p>
+					</div>
+
+					<button class="btn btn-primary">Siguiente</button>
+				</div>
+
+				<div class="sidebar__section">
+					<div class="sidebar__section-header">
+						<h2>Coloque el nombre de los equipos</h2>
+					</div>
+					<div class="inputs__container">
+						<div class="input__values">
+							<label for="" class="input__label">Equipo #1</label>
+							<input type="text" class="input__primary">
+						</div>
+						<div class="input__values"></div>
+						<div class="input__values"></div>
+						<div class="input__values"></div>
+						<div class="input__values"></div>
+						<div class="input__values"></div>
+						<div class="input__values"></div>
+						<div class="input__values"></div>
+					</div>
+				</div>
+			</sidebar>
+			<section class="view"></section>
+		</main>
+	</body>
+</html>

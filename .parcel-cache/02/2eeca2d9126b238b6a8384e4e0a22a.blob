@@ -1,0 +1,29 @@
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.main {
+	min-height: 100vh;
+	width: 100%;
+	background: white;
+}
+
+.sidebar {
+	width: 5vh;
+	min-height: 100vh;
+	background: white;
+	outline: 5px solid red;
+}
+
+.view {
+	width: 90vh;
+	min-height: 100vh;
+	background: rgba(0, 0, 0, 0.3);
+	backdrop-filter: blur(5px);
+}
+
+/*# sourceMappingURL=index.HASH_REF_8a6e625a6f078c797be837fbf556d9ac.css.map */
